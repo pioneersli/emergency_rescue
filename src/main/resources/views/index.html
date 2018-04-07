@@ -116,11 +116,10 @@
             }
         },
             xAxis: {
-                type: 'category',
+                type: 'time',
                 splitLine: {
-                    show: false
-                },
-                minInterval:0.04
+                    show: true
+                }
             },
             yAxis: {
                 type: 'value',
@@ -131,9 +130,7 @@
                 },
                 axisTick:{
                     show:false
-                },
-                max:100,
-                min:70
+                }
 
 
             },
@@ -233,7 +230,7 @@
             success:function(data1){
 
                 $.each(data1.list,function(i,item){
-                    data.push(randomData(item.name,item.value));
+                    data.push(randomData(item.time,item.value));
 
                 });
             }
