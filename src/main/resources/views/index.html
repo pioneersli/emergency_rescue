@@ -27,46 +27,31 @@
 </ul>
 
 <!-- 面板区 -->
-<div class="tab-content"  style="background:#000; color:#FFF;height: 1080px;width: 1902px">
+<div class="tab-content"  style="height: 800px;width: 100%">
     <div role="tabpanel" class="tab-pane active" id="home"  style="height: 100%">
-
-        <div class="row" style="height:100%">
-            <div class="col-xs-10" style="height: 100%">
-                <div class="row" style="height: 33%">
-                    <div class="col-xs-12" style="height: 100%">
-                        <div id="main" style="height:100%;width:100%;"></div>
-                    </div>
+        <div style="height: 400px;width: 100%;">
+                <div class="col-xs-10" style="height: 100%;">
+                    <div id="main" style="height:100%;width:100%;"></div>
                 </div>
-                <div class="row" style="height: 33%" >
-                    <div class="col-xs-12" style="height: 100%">
-
-                        <div id="main1" style="height:100%;width:100%;"></div>
-                    </div>
-
-                </div>
-
-                <div class="row" style="height: 34%">
-                    <div class="col-xs-12" style="height: 100%">
-                        <div id="main2" style="height:100%;width:100%;"></div>
-                    </div>
-
-                </div>
-
+            <div class="col-xs-2" >
+                <span>展示心电图数据</span>
             </div>
-            <div class="col-xs-2" style="height:100%;">
+        </div>
 
-                <div class="row" style="height: 100%">
-                    <div class="col-xs-12" style="height: 100%">
-                        <div style="margin-top: 30%"> <button class="btn" style="color: black;">CALL INFO</button></div>
-                        <div style="margin-top: 10%"> <button class="btn" style="color: black;">Patient Info</button></div>
-                        <div style="margin-top: 10%"> <button class="btn" style="color: black;">Patient MedHx</button></div>
-                        <div style="margin-top: 10%"> <button class="btn" style="color: black;">Vital</button></div>
-                        <div style="margin-top: 10%"> <button class="btn" style="color: black;">Monitor</button></div>
-
-                    </div>
-
-                </div>
-
+        <div  style="height: 200px;width: 100%;">
+            <div class="col-xs-10" style="height: 100%;" >
+                <div id="main1" style="height:100%;width:100%;"></div>
+            </div>
+            <div class="col-xs-2" >
+                <span>展示心电图数据</span>
+            </div>
+        </div>
+        <div style="height: 200px;width: 100%;">
+            <div class="col-xs-10" style="height: 100%;" >
+                <div id="main2" style="height:100%;width:100%;"></div>
+            </div>
+            <div class="col-xs-2" >
+                <span>展示心电图数据</span>
             </div>
         </div>
 
@@ -85,65 +70,38 @@
     var myChart1 = echarts.init(document.getElementById('main1'));
     var myChart2 = echarts.init(document.getElementById('main2'));
     var data = [];
-    var option = null;
-    $(function () {
-
-
-        initData();
-
-        option = {
-
-            title: {
-                text: '心电图',
-                textStyle:{
-                    //文字颜色
-                    color:'#ccc',
-                    //字体风格,'normal','italic','oblique'
-                    fontStyle:'normal',
-                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                    fontWeight:'bold',
-                    //字体系列
-                    fontFamily:'sans-serif',
-                    //字体大小
-                    fontSize:18
-                }
-            },
-
-             tooltip: {
+    var option =  {
+        tooltip: {
             trigger: 'axis',
             axisPointer: {
                 animation: false
             }
         },
-            xAxis: {
-                type: 'time',
-                splitLine: {
-                    show: true
-                }
-            },
-            yAxis: {
-                type: 'value',
-                show:false,
-                boundaryGap: [0, '100%'],
-                splitLine: {
-                    show: false
-                },
-                axisTick:{
-                    show:false
-                }
-
-
-            },
-            series: [{
-                name: '模拟数据',
-                type: 'line',
-                showSymbol: false,
-                hoverAnimation: false,
-                data: data
-            }]
-        };
-
-
+        xAxis: {
+            type: 'time',
+            splitLine: {
+                show: false
+            }
+        },
+        yAxis: {
+            type: 'value',
+            boundaryGap: [0, '100%'],
+            min:-100,
+            max:500,
+            splitLine: {
+                show: false
+            }
+        },
+        series: [{
+            name: '模拟数据',
+            type: 'line',
+            showSymbol: false,
+            hoverAnimation: false,
+            data: data
+        }]
+    };
+    $(function () {
+        initData();
         myChart.setOption(option, true);
         myChart1.setOption(option, true);
         myChart2.setOption(option, true);
@@ -152,73 +110,62 @@
 
     setInterval(function () {
 
-        flushData();
+        initData();
 
         myChart.setOption({
             title: {
-                text: '心电图',
-                textStyle:{
-                    //文字颜色
-                    color:'#ccc',
-                    //字体风格,'normal','italic','oblique'
-                    fontStyle:'normal',
-                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                    fontWeight:'bold',
-                    //字体系列
-                    fontFamily:'sans-serif',
-                    //字体大小
-                    fontSize:18
+                text: '心电图'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    animation: false
+                }
+            },
+            xAxis: {
+                type: 'time',
+                splitLine: {
+                    show: false
+                }
+            },
+            yAxis: {
+                type: 'value',
+                boundaryGap: [0, '100%'],
+                min: -500,
+                max: 500,
+                splitLine: {
+                    show: false
                 }
             },
             series: [{
+                name: '心电图',
+                type: 'line',
+                showSymbol: false,
+                hoverAnimation: false,
                 data: data
             }]
+
         });
         myChart1.setOption({
             title: {
-                text: 'PO',
-                textStyle:{
-                    //文字颜色
-                    color:'#ccc',
-                    //字体风格,'normal','italic','oblique'
-                    fontStyle:'normal',
-                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                    fontWeight:'bold',
-                    //字体系列
-                    fontFamily:'sans-serif',
-                    //字体大小
-                    fontSize:18
-                }
+                text: 'SpO2'
             },
             series: [{
+                type: 'line',
                 data: data
             }]
         });
-
 
         myChart2.setOption({
             title: {
-                text: 'RO',
-                textStyle:{
-                    //文字颜色
-                    color:'#ccc',
-                    //字体风格,'normal','italic','oblique'
-                    fontStyle:'normal',
-                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
-                    fontWeight:'bold',
-                    //字体系列
-                    fontFamily:'sans-serif',
-                    //字体大小
-                    fontSize:18
-                }
+                text: 'RO'
             },
             series: [{
+                type: 'line',
                 data: data
             }]
         });
-
-
-    }, 100);
+    }, 1000);
 
 
 
@@ -227,9 +174,22 @@
             type:'post',
             url:'/initData',
             dataType:'json',
+            async: false,
             success:function(data1){
 
-                $.each(data1.list,function(i,item){
+                if (data1.length==0){
+//                    console.log(Date.parse(new Date("yyyy-MM-dd HH:mm:ss.SSS")));
+                    if(data.length >100){
+                        data.shift();
+                    }
+                    data.push(randomData(-1,0));
+                }
+
+
+                $.each(data1,function(i,item){
+                    if(data.length >100){
+                        data.shift();
+                    }
                     data.push(randomData(item.time,item.value));
 
                 });
@@ -246,7 +206,9 @@
             success:function(data1){
 
                 $.each(data1.list,function(i,item){
-                    data.shift();
+//                    if(data.length>=1500){
+//                        data.shift();
+//                    }
                     data.push(randomData(item.name,item.value));
 
                 });
@@ -255,16 +217,50 @@
 
     }
 
-    function randomData(name,value) {
+    function randomData(time,value) {
+        var now = new Date();
+        if (time!=-1){
+            now.setTime(time);
+        }
+
+        var name_ = now.toDateString();
+       // var value_ = [now.getFullYear() + '/' + (now.getMonth() + 1) + '/' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + '.' + now.getMilliseconds(), value];
+        var value_=[getDate(now),value];
+        console.log("name:" + name_);
+        console.log("value:" + value_);
         return {
-            name:name,
-            value:value
+            name: name_,
+            value: value_
         }
 
     }
 
 
+    function getDate(now) {
+        var year = now.getFullYear();       //年
+        var month = now.getMonth() + 1;     //月
+        var day = now.getDate();            //日
 
+        var hh = now.getHours();            //时
+        var mm = now.getMinutes();          //分
+        var ss = now.getSeconds();           //秒
+        if ( !(month > 9)) {
+            month="0"+month;
+        }
+        if ( !(day > 9)) {
+            day="0"+day;
+        }
+        if ( !(hh > 9)) {
+            hh="0"+hh;
+        }
+        if ( !(mm > 9)) {
+            mm="0"+mm;
+        }
+        if ( !(ss > 9)) {
+            ss="0"+ss;
+        }
+    return year + '/' + month + '/' + day + ' ' + hh + ':' + mm + ':' + ss + '.' + now.getMilliseconds();
+    }
 
 </script>
 </body>

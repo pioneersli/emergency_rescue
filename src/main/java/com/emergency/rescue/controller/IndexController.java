@@ -1,6 +1,7 @@
 package com.emergency.rescue.controller;
 
 import com.emergency.rescue.service.ECGService;
+import com.emergency.rescue.util.DateUtils;
 import com.emergency.rescue.vo.Demo;
 import com.emergency.rescue.vo.ECGVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +20,40 @@ import java.util.*;
 public class IndexController {
     @Autowired
     private ECGService ecgService;
+
     @RequestMapping("/")
     public String index(){
         return "index";
     }
-    @RequestMapping("initData")
-    @ResponseBody
-    public Map<String,Object> initData(){
 
-            Map<String,Object> map=new HashMap<String,Object>();
-            List<ECGVo> list=new ArrayList<ECGVo>();
-            list=ecgService.getECGVo();
-            if(list==null ||list.size()<1){
-                ECGVo vo=new ECGVo();
-               // vo.setTime();
-            }
-            map.put("list",list);
-            return map;
+
+    @RequestMapping("/initData")
+    @ResponseBody
+    public List<ECGVo> initData(){
+
+        //Map<String,Object> map=new HashMap<String,Object>();
+        List<ECGVo> list=ecgService.getECGVo();
+//        if(list==null || list.size()<1){
+//            ECGVo vo=new ECGVo();
+//            vo.setTime(DateUtils.getTime(new Date()));
+//            vo.setValue("20");
+//            list=new ArrayList<ECGVo>();
+//            list.add(vo);
+//        }
+        return list;
+       // map.put("list",list);
+//        if(list!=null && list.size()>0){
+//            map.put("list",list);
+//        }else{
+//            ECGVo vo=new ECGVo();
+//            vo.setTime(DateUtils.getTime(new Date()));
+//            vo.setValue("0");
+//            list=new ArrayList<ECGVo>();
+//            list.add(vo);
+//            map.put("list",list);
+//        }
+
+       // return map;
 
 
 
@@ -56,41 +74,41 @@ public class IndexController {
             demo.setValue(base-add.nextInt(4)+"");
         }
         list.add(demo);
-//        demo.setName("0.04");
-//        if(random.nextInt(2)==1){
-//            demo.setValue(base+add.nextInt(4)+"");
-//        }else{
-//            demo.setValue(base-add.nextInt(4)+"");
-//        }
-//        list.add(demo);
-//        demo.setName("0.04");
-//        if(random.nextInt(2)==1){
-//            demo.setValue(base+add.nextInt(4)+"");
-//        }else{
-//            demo.setValue(base-add.nextInt(4)+"");
-//        }
-//        list.add(demo);
-//        demo.setName("0.04");
-//        if(random.nextInt(2)==1){
-//            demo.setValue(base+add.nextInt(4)+"");
-//        }else{
-//            demo.setValue(base-add.nextInt(4)+"");
-//        }
-//        list.add(demo);
-//        demo.setName("0.04");
-//        if(random.nextInt(2)==1){
-//            demo.setValue(base+add.nextInt(4)+"");
-//        }else{
-//            demo.setValue(base-add.nextInt(4)+"");
-//        }
-//        list.add(demo);
-//        demo.setName("0.04");
-//        if(random.nextInt(2)==1){
-//            demo.setValue(base+add.nextInt(4)+"");
-//        }else{
-//            demo.setValue(base-add.nextInt(4)+"");
-//        }
-//        list.add(demo);
+        demo.setName("0.04");
+        if(random.nextInt(2)==1){
+            demo.setValue(base+add.nextInt(4)+"");
+        }else{
+            demo.setValue(base-add.nextInt(4)+"");
+        }
+        list.add(demo);
+        demo.setName("0.04");
+        if(random.nextInt(2)==1){
+            demo.setValue(base+add.nextInt(4)+"");
+        }else{
+            demo.setValue(base-add.nextInt(4)+"");
+        }
+        list.add(demo);
+        demo.setName("0.04");
+        if(random.nextInt(2)==1){
+            demo.setValue(base+add.nextInt(4)+"");
+        }else{
+            demo.setValue(base-add.nextInt(4)+"");
+        }
+        list.add(demo);
+        demo.setName("0.04");
+        if(random.nextInt(2)==1){
+            demo.setValue(base+add.nextInt(4)+"");
+        }else{
+            demo.setValue(base-add.nextInt(4)+"");
+        }
+        list.add(demo);
+        demo.setName("0.04");
+        if(random.nextInt(2)==1){
+            demo.setValue(base+add.nextInt(4)+"");
+        }else{
+            demo.setValue(base-add.nextInt(4)+"");
+        }
+        list.add(demo);
         map.put("list",list);
         return map;
 

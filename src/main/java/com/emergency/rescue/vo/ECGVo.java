@@ -1,14 +1,14 @@
 package com.emergency.rescue.vo;
 
 public class ECGVo {
-    private String time;
+    private long time;
     private String value;
 
-    public String getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 
