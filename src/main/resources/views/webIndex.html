@@ -8,7 +8,7 @@
     <!--Bootstrap-->
     <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 
-    <script th:src="@{js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{js/jQuery-1.11.3.min.js}"></script>
     <script th:src="@{bootstrap/js/bootstrap.min.js}"></script>
     <script th:src="@{js/echarts.js}"></script>
 
@@ -182,7 +182,7 @@
         });
 
 
-        var ecgWs = new WebSocket('ws://192.168.1.107:8080/websocket/ecg');
+        var ecgWs = new WebSocket('ws://localhost:8000/websocket/ecg');
         ecgWs.onopen = function (evt) {
             console.log("心电图websocket 连接...");
             ecgWs.send("心电图建立连接");
@@ -239,7 +239,7 @@
 
     //心率 呼吸率计算
     function xhrateData() {
-        var xhrateWs = new WebSocket('ws://192.168.1.107:8080/websocket/xhrate');
+        var xhrateWs = new WebSocket('ws://localhost:8000/websocket/xhrate');
         xhrateWs.onopen = function (evt) {
             console.log("心率/呼吸率 websocket 连接...");
             xhrateWs.send("心率/呼吸率建立连接");
@@ -281,7 +281,7 @@
             }
         });
 
-        var spo2Ws = new WebSocket('ws://192.168.1.107:8080/websocket/spo2');
+        var spo2Ws = new WebSocket('ws://localhost:8000/websocket/spo2');
         spo2Ws.onopen = function (evt) {
             console.log("血氧websocket 连接...");
             spo2Ws.send("血氧建立连接");
@@ -313,7 +313,7 @@
 
     //血氧计算
     function spo2rateData() {
-        var spo2rateWs = new WebSocket('ws://192.168.1.107:8080/websocket/spo2Rate');
+        var spo2rateWs = new WebSocket('ws://localhost:8000/websocket/spo2Rate');
         spo2rateWs.onopen = function (evt) {
             console.log(" 血氧计算 websocket 连接...");
             spo2rateWs.send("血氧计算建立连接");
@@ -337,7 +337,7 @@
 
     //********************体温开始************************************
     function  tempData() {
-        var tempWs = new WebSocket('ws://192.168.1.107:8080/websocket/temperature');
+        var tempWs = new WebSocket('ws://localhost:8000/websocket/temperature');
         tempWs.onopen = function (evt) {
             console.log("体温websocket 连接...");
             tempWs.send("体温建立连接");
@@ -361,7 +361,7 @@
 
     //********************血压开始************************************
     function  bpData() {
-        var bpWs = new WebSocket('ws://192.168.1.107:8080/websocket/bp');
+        var bpWs = new WebSocket('ws://localhost:8000/websocket/bp');
         bpWs.onopen = function (evt) {
             console.log("血压websocket 连接...");
             bpWs.send("血压建立连接");
@@ -386,7 +386,7 @@
 
     //开始测量血压
     function bpStart(type) {
-        var bpUrl ="http://192.168.1.107:8080/startTestBloodPressure";
+        var bpUrl ="http://localhost:8000/startTestBloodPressure";
         $.get(bpUrl,function(data){
             if (data=="success"){
                 alert("血压开始测量，请耐心等待...");
@@ -398,7 +398,7 @@
 
     //停止测量血压
     function bpStop() {
-        var bpUrl ="http://192.168.1.107:8080/stopTestBloodPressure";
+        var bpUrl ="http://localhost:8000/stopTestBloodPressure";
         $.get(bpUrl,function(data){
             if (data!="success"){
                 alert("血压测量停止失败");
